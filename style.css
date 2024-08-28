@@ -35,7 +35,7 @@ body {
   font-size: 16px;
   color: #001e4d;
   font-weight: 600;
-  margin-bottom: 15px;
+  margin-bottom: 20px;
 }
 
 .btn {
@@ -50,6 +50,7 @@ body {
   border-radius: 4px;
   cursor: pointer;
   display: block;
+  transition: all 0.3s;
 }
 
 .btn:hover:not([disabled]) {
@@ -76,6 +77,14 @@ body {
 
 .correct {
   background: #7bd08e;
+}
+
+.incorrect {
+  background: #f7a0a0;
+}
+
+.incorrects {
+  background: #001e4d;
 }
 
 .incorrect {

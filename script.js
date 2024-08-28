@@ -50,6 +50,7 @@ const questions = [
 const questionElement = document.getElementById("question");
 const answerBtns = document.getElementById("answer-button");
 const nextBtn = document.getElementById("next-btn");
+// const nextBtns = document.getElementsByClassName("btn");
 
 let currentQuestionIndex = 0;
 let score = 0;
@@ -67,14 +68,17 @@ function showQuestion() {
   let questionNo = currentQuestionIndex + 1;
   questionElement.innerHTML = questionNo + ". " + currentQuestion.question;
 
+  // console.log("next question");
   currentQuestion.answers.forEach((answer) => {
     const button = document.createElement("button");
     button.innerHTML = answer.text;
     button.classList.add("btn");
     answerBtns.appendChild(button);
-    if (answer.correct) {
-      button.dataset.correct = answer.correct;
-    }
+    // if (answer.correct) {
+    //   button.dataset.correct = answer.correct; //answer.correct
+    // }
+    button.dataset.correct = answer.correct;
+
     button.addEventListener("click", selectAnswer);
   });
 }
@@ -89,6 +93,7 @@ function resetState() {
 function selectAnswer(e) {
   const selectedBtn = e.target;
   const isCorrect = selectedBtn.dataset.correct === "true";
+  // console.log(typeof isCorrect);
   if (isCorrect) {
     selectedBtn.classList.add("correct");
     score++;
@@ -100,6 +105,9 @@ function selectAnswer(e) {
     if (button.dataset.correct === "true") {
       button.classList.add("correct");
     }
+    // if (button.dataset.correct === "false") {
+    //   button.classList.add("incorrects");
+    // }
     button.disabled = true; //you can't click any button
   });
   nextBtn.style.display = "block";
@@ -112,20 +120,33 @@ function showScore() {
   nextBtn.style.display = "block";
 }
 
-function handleNextButton() {
+// listener one
+// function handleNextButton() {
+//   currentQuestionIndex++;
+//   if (currentQuestionIndex < questions.length) {
+//     showQuestion();
+//   } else {
+//     showScore();
+//   }
+// }
+
+// nextBtn.addEventListener("click", () => {
+//   if (currentQuestionIndex < questions.length) {
+//     handleNextButton();
+//   } else {
+//     startQuiz();
+//   }
+// });
+
+nextBtn.addEventListener("click", () => {
   currentQuestionIndex++;
   if (currentQuestionIndex < questions.length) {
     showQuestion();
   } else {
     showScore();
-  }
-}
-
-nextBtn.addEventListener("click", () => {
-  if (currentQuestionIndex < questions.length) {
-    handleNextButton();
-  } else {
-    startQuiz();
+    nextBtn.addEventListener("click", () => {
+      startQuiz();
+    });
   }
 });
 
