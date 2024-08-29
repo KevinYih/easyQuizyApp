@@ -132,10 +132,8 @@ function showScore() {
 
 // one listener is enough.
 nextBtn.addEventListener("click", () => {
-  console.log(`currentQuestionIndex is ${currentQuestionIndex}`);
-  console.log(`questions.length is ${questions.length}`);
-  if (currentQuestionIndex < questions.length) {
-    if (currentQuestionIndex === questions.length + 1) {
+  if (currentQuestionIndex++ < questions.length) {
+    if (currentQuestionIndex === questions.length) {
       showScore();
     } else {
       showQuestion();
