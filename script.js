@@ -58,7 +58,7 @@ let score = 0;
 function startQuiz() {
   currentQuestionIndex = 0;
   score = 0;
-  nextBtn.innerHTML = "Next";
+  nextBtn.textContent = "Next";
   showQuestion();
 }
 
@@ -66,12 +66,12 @@ function showQuestion() {
   resetState();
   let currentQuestion = questions[currentQuestionIndex];
   let questionNo = currentQuestionIndex + 1;
-  questionElement.innerHTML = questionNo + ". " + currentQuestion.question;
+  questionElement.textContent = questionNo + ". " + currentQuestion.question;
 
   // console.log("next question");
   currentQuestion.answers.forEach((answer) => {
     const button = document.createElement("button");
-    button.innerHTML = answer.text;
+    button.textContent = answer.text;
     button.classList.add("btn");
     answerBtns.appendChild(button);
     // if (answer.correct) {
@@ -115,8 +115,8 @@ function selectAnswer(e) {
 
 function showScore() {
   resetState();
-  questionElement.innerHTML = `You scored ${score} out of ${questions.length}!`;
-  nextBtn.innerHTML = "Restart";
+  questionElement.textContent = `You scored ${score} out of ${questions.length}!`;
+  nextBtn.textContent = "Restart";
   nextBtn.style.display = "block";
 }
 
