@@ -72,7 +72,7 @@ function showQuestion() {
   currentQuestion.answers.forEach((answer) => {
     const button = document.createElement("button");
     button.textContent = answer.text;
-    button.classList.add("btn");
+    button.classList.add("btn"); //prefer classList to className
     answerBtns.appendChild(button);
     // if (answer.correct) {
     //   button.dataset.correct = answer.correct; //answer.correct
@@ -130,24 +130,31 @@ function showScore() {
 //   }
 // }
 
-// nextBtn.addEventListener("click", () => {
-//   if (currentQuestionIndex < questions.length) {
-//     handleNextButton();
-//   } else {
-//     startQuiz();
-//   }
-// });
-
+// one listener is enough.
 nextBtn.addEventListener("click", () => {
-  currentQuestionIndex++;
+  console.log(`currentQuestionIndex is ${currentQuestionIndex}`);
+  console.log(`questions.length is ${questions.length}`);
   if (currentQuestionIndex < questions.length) {
-    showQuestion();
+    if (currentQuestionIndex === questions.length + 1) {
+      showScore();
+    } else {
+      showQuestion();
+    }
   } else {
-    showScore();
-    nextBtn.addEventListener("click", () => {
-      startQuiz();
-    });
+    startQuiz();
   }
 });
+
+// nextBtn.addEventListener("click", () => {
+//   currentQuestionIndex++;
+//   if (currentQuestionIndex < questions.length) {
+//     showQuestion();
+//   } else {
+//     showScore();
+//     nextBtn.addEventListener("click", () => {
+//       startQuiz();
+//     });
+//   }
+// });
 
 startQuiz();
